@@ -1,3 +1,4 @@
 [deps]
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 MyJuliaIntroDocs = "0b2448eb-630c-4604-8f5d-97348efd783e"
+Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"

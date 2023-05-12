@@ -3,6 +3,13 @@ using Documenter
 
 DocMeta.setdocmeta!(MyJuliaIntroDocs, :DocTestSetup, :(using MyJuliaIntroDocs); recursive=true)
 
+const liveserver = "liveserver" in ARGS
+
+if liveserver
+    using Revise
+    Revise.revise()
+end
+
 makedocs(;
     modules=[MyJuliaIntroDocs],
     authors="David Métivier <david.metivier@inrae.fr>",

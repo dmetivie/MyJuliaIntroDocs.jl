@@ -1,4 +1,3 @@
-
 # To get started
 
 ## Generic coding advice
@@ -83,3 +82,44 @@ f(x) = x+1
 f([1,2,3]) # Error
 f.([1,2,3]) # ça marche!
 ```
+
+### Macros
+
+
+
+### Multiple dispatch
+
+It is a sort of generalization of function overloading.
+
+Basically one function will act differently depending on the type of its arguments.
+
+Example, let's consider the power function $f(x) = x^p$. Mathematically, if $p$ is an integer then one can just multiply $p$-times $x$. If not one can always use $f(x) = \exp(p \log(x))$ (for positive $x$).
+In Julia, thanks to multiple dispatch you can code that just like
+
+```@repl pow
+f(x, p::Integer) = prod(fill(x, p))
+```
+
+and
+
+```@repl pow
+f(x, p) = exp(p*log(x))
+```
+
+Then, at compile time, the compiler will be able to infer which method of `f` to use.
+
+```@setup pow
+@time f(1.001, 20000)
+@time f(1.001, 20000.)
+```
+
+```@repl pow
+f(2, 2) # call first function
+f(2, 2.) # call second function
+```
+
+This is an amazing feature for multiple reasons:
+
+- Helps make code generic
+- Fast
+- Readable
