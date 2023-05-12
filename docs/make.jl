@@ -14,8 +14,11 @@ makedocs(;
         edit_link="master",
         assets=String[],
     ),
-    pages=[
-        "Home" => "index.md",
+    pages = [
+        "First things first" => "index.md",
+        "Get Started" => "GetStarted.md",
+        "Get Help" => "FAQ.md",
+        "Get Packages" => "packages.md"
     ],
 )
 
