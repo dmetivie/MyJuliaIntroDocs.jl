@@ -1,7 +1,9 @@
-# MyJuliaIntro
+# My Julia Introduction
 
 ## What is Julia?
 
+What: Julia is a relatively new computing language (2012), that is highly readable and efficient.
+It is meant to be multipurpose. Its foundations rely on all good ideas from previous language to make one "super" software.
 I like this short [blog post](https://julialang.org/blog/2012/02/why-we-created-julia/) from Julia creators from 2012.
 It explains in what context and with what ambitions, Julia was launched.
 
@@ -23,11 +25,16 @@ juliaup update
 
 - [Une liste "officiel"](https://julialang.org/learning/tutorials/)
 
+- This [book/website](https://juliadatascience.io/) with a specific focus on Data Science
+
 - Livre [**Statistics with Julia:**](https://github.com/dmetivie/MyJuliaIntro.jl/blob/master/references/StatisticsWithJuliaDRAFT.pdf). Introduction aux stats avec Julia. Plein d'example de codes (voir leur site aussi) dans les référence.
 
 - Internet. We all learn differently, there are plenty of different material (video, notebooks, webpage, forums, ...).
 
 ## Why is Julia so great?
+
+Here I compile some cool/fancy link/post/presentation showcasting Julia. 
+If you want more in depth discussion about Julia and collaborative scientific computing go to [this section](@ref CollabSci).
 
 Ici je compile quelques liens/messages/présentation mettant en avant le language Julia.
 
@@ -50,6 +57,8 @@ Then you can go for more language-specific features (multiple dispatch, composab
 
 I can add to this list benchmarking, which is super easy to do in Julia + there is one package that does it all. From my experience it is quite a pain in Python and R + there seem to be multiple options.
 ```
+
+- [Why Julia?](https://juliadatascience.io/why_julia) for programmer and non programmers.
 
 - [How to solve the same numerical problem in 7 different programming languages](https://medium.com/%40andreaskuhn92/how-to-solve-the-same-numerical-problem-in-7-different-programming-languages-a64daac3ed64)
 

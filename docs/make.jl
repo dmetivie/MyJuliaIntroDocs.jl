@@ -25,7 +25,8 @@ makedocs(;
         "First things first" => "index.md",
         "Get Started" => "GetStarted.md",
         "Get Help" => "FAQ.md",
-        "Get Packages" => "packages.md"
+        "Get Packages" => "packages.md",
+        "Scientific computing" => "ScientificComputing.md",
     ],
 )
 
