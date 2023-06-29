@@ -2,15 +2,15 @@
 
 ## Generic coding advice
 
-Have a good integrated development environment (IDE). It is a software application that helps programmers develop software code efficiently.
+Have a good **Integrated Development Environment** (IDE). It is a software application that helps programmers develop software code efficiently i.e. you can do plots in the editor, you have a terminal, autocompletion, linting etc.
+Example of IDE are `VSCode`, `RStudio`, `PyCharm`, `Matlab terminal`, `Vim` (is it an IDE?), Notebooks (not sure if it is exactly an IDE) etc.
 
-My personal favorite is `VSCode`. It is multi-language editor, you can do (non-exhaustive list) using VSCode extensions LaTeX, Julia, Python, Git, Jupyter Notebooks, R, Markdown, HTML, C, SSH, etc.
-Your shortcut can remain the same for each language, for example `Ctl+/` will comment code whether I am doing LaTeX (with `%`), Julia (with `#`), etc.
+My personal favorite is `VSCode`. It is multi-language editor, you can do (non-exhaustive list) using `VSCode` extensions LaTeX, Julia, Python, SSH for Cluster, Git, Jupyter Notebooks, R, Markdown, HTML, C, etc.
+Your shortcuts remain the same for each language, for example `Ctl+/` will comment code whether I am doing LaTeX (with `%`), Julia (with `#`), etc.
 It works on Linux/Mac/Windows.
 
 !!! tip
-
-    Learn how to use your IDE (shortcuts, functionalities, etc.) it is worth your time, since you will be using it a lot then!
+    Learn how to use your IDE (shortcuts, functionalities, appearance, etc.) it is worth your time, since you will be using it a lot!
 
 Dévlopper/tester avec script dans VSCode (avec l'extansion Julia). Puis mettez vos résultats (choses qui marchent) au fur et à mesure dans un notebook (avec les figures).
 Avoir les deux vous sera utile.

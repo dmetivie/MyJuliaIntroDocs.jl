@@ -1,10 +1,10 @@
 # Packages
 
-One common question I get is "Do Julia have good packages?". Answer is yes!
+One common question I get is "Does Julia have good packages?". Answer is yes!
 Currently, (2023) there are around 8000 register packages.
 This is nothing compared to R or Python. However, the sole number is not a guarantee of quality.
 
-In Python and R, you don't have a lot of code reuse, meaning you can find in different packages code doing the same thing (distributions definitions, stats algorithms, ...).
+In Python and R, you don't have a lot of code reuse, meaning you can find in different packages code doing the same thing (distributions definitions, stats algorithms, Markov chain...).
 This is because packages (often coded in C/C++ under the hood) are not made to communicate between each other.
 In Julia, since everything is written in Julia and you can use multiple dispatch, using, manipulating and combining different packages is natural.
 
@@ -79,3 +79,19 @@ Je vous laisse rajouter les liens des github ou doc pour chaque packages (à fai
 - `Plots.jl` pour faire des plots. Pour tracer des cartes on pourra en parler mais je suis obligé de passer par un package Python.
 - `StatsPlots.jl` do the same as `Plots.jl` but add some usefuls statistics plots like boxplot, correlation plots, density plots, ...
 - `StatsBase.jl` et `Statistics.jl` pour les opérations standards de stats.
+
+## Using R, Python, C, Matlab within Julia
+
+Most of other language can be used within Julia painlessly.
+Most of the time you can just copy and paste R/Python/etc code in your script surrounded by some macro and that just work. It is very easy to send, receive, call function in Julia code.
+
+### R
+
+It is quite easy just install `RCall.jl` and follow the instruction.
+You can even use the R console within the Julia console.
+
+### Python 
+
+For Python, the standard[^1] is to use [`PythonCall.jl`](https://github.com/cjdoris/PythonCall.jl) and [`CondaPkg.jl`](https://github.com/cjdoris/CondaPkg.jl).
+
+[^1]: I used `PyCall.jl` and `Conda.jl` but apparently the other one are better.

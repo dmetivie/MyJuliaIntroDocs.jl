@@ -1,5 +1,7 @@
 # My Julia Introduction
 
+This documentation is meant for Julia beginner like my students.
+
 ## What is Julia?
 
 What: Julia is a relatively new computing language (2012), that is highly readable and efficient.
@@ -33,7 +35,7 @@ juliaup update
 
 ## Why is Julia so great?
 
-Here I compile some cool/fancy link/post/presentation showcasting Julia. 
+Here I compile some cool/fancy link/post/presentation showcasting Julia.
 If you want more in depth discussion about Julia and collaborative scientific computing go to [this section](@ref CollabSci).
 
 Ici je compile quelques liens/messages/présentation mettant en avant le language Julia.
