@@ -22,11 +22,12 @@ makedocs(;
         assets=String[],
     ),
     pages = [
-        "First things first" => "index.md",
-        "Get Started" => "GetStarted.md",
-        "Get Help" => "FAQ.md",
-        "Get Packages" => "packages.md",
-        "Scientific computing" => "ScientificComputing.md",
+        "Talk 2 neurones" => "talk.md",
+        # "First things first" => "index.md",
+        # "Get Started" => "GetStarted.md",
+        # "Get Help" => "FAQ.md",
+        # "Get Packages" => "packages.md",
+        # "Scientific computing" => "ScientificComputing.md",
     ],
 )
 
