@@ -1,5 +1,7 @@
 # [Talk 2 neurones](https://reseau2neurones.mathnum.inrae.fr/node/10)
 
+Page en construction! Contactez moi si quelque chose ne marche pas.
+
 ## Programme
 
 En deux heures, nous allons à la fois introduire les bases du langage de programmation Julia et les Réseaux Antagonistes Génératifs (GAN). Pour Julia, nous ne discuterons pas seulement de la rapidité, mais aussi de certaines fonctionnalités essentielles, telles que le "multiple dispach" (définition multiple), qui rendent le langage unique, par exemple en termes d’expressivité et de composition de packages.
@@ -72,23 +74,23 @@ S'il vous manque un élément, le reste du notebook devrait fonctionner quand m�
 6. Application GAN avec le package `Flux.jl` sur l'ensemble de données MNIST (notebook Jupyter)
 
 !!! note Notebook Pluto
-     Pour charger un notebook Pluto, il ne s'agit que de fichiers `.jl` normaux avec de nombreux commentaires que Pluto utilisera pour générer le notebook et installer les packages.
-     Pour charger un notebook Pluto, exécutez
-     ```julia
-     import Pluto; Pluto.run()
-     ```
-     Cela chargera une page dans votre navigateur Web. Là, trouvez votre cahier et ouvrez-le.
-     Si vous ouvrez votre Julia dans le dossier du notebook, il sera plus facile de retrouver le fichier !
-     Une fois à l’intérieur, cliquez sur Exécuter (l’aperçu en mode sans échec est une nouvelle fonctionnalité).
-     Les notebooks Pluto peuvent être partagés et vue (sans Julia) au format `.html` statique, à partir de là, vous pouvez les exécuter en un clic avec Binder (cela prend cependant du temps).
+    Pour charger un notebook Pluto, il ne s'agit que de fichiers `.jl` normaux avec de nombreux commentaires que Pluto utilisera pour générer le notebook et installer les packages.
+    Pour charger un notebook Pluto, exécutez
+    ```julia
+    import Pluto; Pluto.run()
+    ```
+    Cela chargera une page dans votre navigateur Web. Là, trouvez votre cahier et ouvrez-le.
+    Si vous ouvrez votre Julia dans le dossier du notebook, il sera plus facile de retrouver le fichier !
+    Une fois à l’intérieur, cliquez sur Exécuter (l’aperçu en mode sans échec est une nouvelle fonctionnalité).
+    Les notebooks Pluto peuvent être partagés et vue (sans Julia) au format `.html` statique, à partir de là, vous pouvez les exécuter en un clic avec Binder (cela prend cependant du temps).
 
 !!! note Notebook Jupyter
-     Si vous utilisez l'extension VSCode, ouvrez simplement le notebook « .ipynb » dans VSCode, puis sélectionnez le noyau Julia lorsque vous y êtes invité.
-     Vous pouvez également utiliser le package [IJulia.jl](https://julialang.github.io/IJulia.jl/stable/manual/installation/) et suivre les instructions.
+    Si vous utilisez l'extension VSCode, ouvrez simplement le notebook « .ipynb » dans VSCode, puis sélectionnez le noyau Julia lorsque vous y êtes invité.
+    Vous pouvez également utiliser le package [IJulia.jl](https://julialang.github.io/IJulia.jl/stable/manual/installation/) et suivre les instructions.
 
 !!! warning Notebook Pluto : Première execution
-     Lorsque vous lancez un notebook Pluto
-         - tout le code s'exécutera en même temps
-         - Si c'est la première fois que vous l'utilisez, tout le package sera installé, chargé, précompilé
-     Cela prend donc du temps au début.
-     Sur le plan positif, ils sont entièrement reproductibles, toutes les dépendances du code et de la version du package sont stockées dans le notebook. Et il suffit de les ouvrir et tout devrait fonctionner automatiquement.
+    Lorsque vous lancez un notebook Pluto
+        - tout le code s'exécutera en même temps
+        - Si c'est la première fois que vous l'utilisez, tout le package sera installé, chargé, précompilé
+    Cela prend donc du temps au début.
+    Sur le plan positif, ils sont entièrement reproductibles, toutes les dépendances du code et de la version du package sont stockées dans le notebook. Et il suffit de les ouvrir et tout devrait fonctionner automatiquement.
