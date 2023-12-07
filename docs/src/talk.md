@@ -45,7 +45,7 @@ using Pluto, Plots, BenchmarkTools
 using Flux
 ```
 
-Cela va installer quelques packages clés (vous pouvez en installer d'autres en avance, cf les notebooks). **Ca va prendre un certain temps!**
+Cela va installer quelques packages clés (vous pouvez en installer d'autres en avance, cf les notebooks). **Ça va prendre un certain temps!**
 
 3. Comme IDE/notebook, nous allons tester VSCode, Jupyter et Pluto.
 Dans VSCode installer l'[extension Julia](https://marketplace.visualstudio.com/items?itemName=julialang.language-julia). On pourra aussi utiliser l'[extension Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter).
@@ -59,39 +59,36 @@ Dans VSCode installer l'[extension Julia](https://marketplace.visualstudio.com/i
 !!! danger
     Sur Windows, il se peut que l'antivirus soit agressif en vers `juliaup` (d'expérience, il l'est avec tout le monde, ex: Matlab). Si vous n'avez pas la main pour ajouter une exception de sécurité, essayez l'[installation classique](https://julialang.org/downloads/).
 
-## Notebooks we will use
+## Notebooks que l'on va utiliser
 
-1. Generic presentation (Pluto notebook)
-2. Multiple dispach example (Jupyter notebook)
-3. Example of speed and generic code (Pluto notebook). To fully run, this one require that you have some C compiler, R installed and Python with `numpy`.
-4. Optimization & ODE example
-5. GAN presentation
-6. Application GAN with the `Flux.jl` package on the MNIST dataset (Jupyter notebook)
+J'ai divisé en plusieurs notebook la présentation pour alléger chacun et que vous puissiez vous concentrer sur ceux qui vous intéressent.
 
-!!! note Pluto notebooks
-    To load a Pluto notebooks are just regular `.jl` files with many comments that Pluto will use to generate the notebook and install the packages.
+1. Présentation générique (notebook Pluto)
+2. Exemple: multiple dispach (notebook Jupyter)
+3. Exemple: performance + code générique (notebook Pluto). Pour fonctionner pleinement, celui-ci nécessite que vous ayez un compilateur C, R installé et Python avec `numpy`.
+S'il vous manque un élément, le reste du notebook devrait fonctionner quand même.
+4. Exemple: Optimisation et ODE (notebook Pluto)
+5. Présentation des GANs
+6. Application GAN avec le package `Flux.jl` sur l'ensemble de données MNIST (notebook Jupyter)
 
-    To load a Pluto notebook, run
-    ```julia
-    import Pluto; Pluto.run()
-    ```
-    This will load a page in your web browser. There find your notebook and open it. 
-    If you open your Julia inside the notebook folder, it will be easier to find the file!
-    Once inside click on run (safe mode preview is a new feature). 
-    
-    Pluto notebooks can be shared as static `.html`, from there you can run them in one click with Binder (it takes time though).
+!!! note Notebook Pluto
+     Pour charger un notebook Pluto, il ne s'agit que de fichiers `.jl` normaux avec de nombreux commentaires que Pluto utilisera pour générer le notebook et installer les packages.
+     Pour charger un notebook Pluto, exécutez
+     ```julia
+     import Pluto; Pluto.run()
+     ```
+     Cela chargera une page dans votre navigateur Web. Là, trouvez votre cahier et ouvrez-le.
+     Si vous ouvrez votre Julia dans le dossier du notebook, il sera plus facile de retrouver le fichier !
+     Une fois à l’intérieur, cliquez sur Exécuter (l’aperçu en mode sans échec est une nouvelle fonctionnalité).
+     Les notebooks Pluto peuvent être partagés et vue (sans Julia) au format `.html` statique, à partir de là, vous pouvez les exécuter en un clic avec Binder (cela prend cependant du temps).
 
-!!! note Jupyter notebooks
-    If you use the VSCode extension, then simply open the notebook `.ipynb` in VSCode, then select Julia kernel when asked.
+!!! note Notebook Jupyter
+     Si vous utilisez l'extension VSCode, ouvrez simplement le notebook « .ipynb » dans VSCode, puis sélectionnez le noyau Julia lorsque vous y êtes invité.
+     Vous pouvez également utiliser le package [IJulia.jl](https://julialang.github.io/IJulia.jl/stable/manual/installation/) et suivre les instructions.
 
-    You can also use the [IJulia.jl](https://julialang.github.io/IJulia.jl/stable/manual/installation/) package and follow the instructions.
-
-!!! warning Pluto notebooks: run them once
-    When you launch a Pluto notebooks
-        - all the code will run at once
-        - If it is the first time you use it, all the package will be installed, loaded, precompile
-    Hence it takes time at first.
-    On the plus side they are fully reproductible, all the code, package version dependencies are stored inside the notebook. And you just have to open them and everything should work.
-
-
-
+!!! warning Notebook Pluto : Première execution
+     Lorsque vous lancez un notebook Pluto
+         - tout le code s'exécutera en même temps
+         - Si c'est la première fois que vous l'utilisez, tout le package sera installé, chargé, précompilé
+     Cela prend donc du temps au début.
+     Sur le plan positif, ils sont entièrement reproductibles, toutes les dépendances du code et de la version du package sont stockées dans le notebook. Et il suffit de les ouvrir et tout devrait fonctionner automatiquement.
