@@ -13,7 +13,7 @@ end
 makedocs(;
     modules=[MyJuliaIntroDocs],
     authors="David Métivier <david.metivier@inrae.fr>",
-    repo="https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/{commit}{path}#{line}",
+    # repolink="https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/{commit}{path}#{line}",
     sitename="MyJuliaIntroDocs.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
