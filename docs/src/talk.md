@@ -83,7 +83,7 @@ J'ai divisé en plusieurs notebook la présentation pour alléger chacun et que 
 3. [`notebook_3_speed_sum_example.jl`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/master/notebooks/notebook_3_speed_sum_example.jl) exemple: performance + code générique (notebook Pluto). Pour fonctionner pleinement, celui-ci nécessite que vous ayez installé un compilateur C, R, Python  avec `numpy`. Même s'il vous manque un de ces éléments, le reste du notebook devrait fonctionner quand même.
 4. Exemple: Optimisation et ODE (notebook Pluto)
 5. Présentation des GANs
-6. Application GAN avec le package `Flux.jl` sur l'ensemble de données MNIST (notebook Jupyter)
+6. Application GAN avec le package `Flux.jl` d'abord sur un exemple simple [`notebook_5_GAN_simple_example.ipynb`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/9a3c4824d316b625d4c214b855cedc2973cd164e/notebooks/notebook_5_GAN_simple_example.ipynb) puis sur l'ensemble de données MNIST (notebook Jupyter).
 
 ### Notebook Pluto
 
