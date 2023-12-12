@@ -1,5 +1,13 @@
 ### A Pluto.jl notebook ###
-# v0.19.32
+# v0.19.35
+
+#> [frontmatter]
+#> title = "Notebook_3 Speed and sum exemple"
+#> date = "2023-12-13"
+#> 
+#>     [[frontmatter.author]]
+#>     name = "David Métivier"
+#>     url = "http://www.cmap.polytechnique.fr/~david.metivier/"
 
 using Markdown
 using InteractiveUtils
@@ -26,6 +34,9 @@ using HypertextLiteral
 # ╔═╡ 2e07b790-d3f0-4266-afe8-6d4ef574e0be
 using PlutoTeachingTools
 
+# ╔═╡ fbedf072-c766-477b-b33c-ec5e8009871a
+using PlutoExtras
+
 # ╔═╡ 159e8bd8-0ea6-4179-8e5c-17153cbeb0fa
 using Libdl # Dynamic Linker to find path for C I guess
 
@@ -46,8 +57,11 @@ md"""
 [^credit]: [Example inspired from this GitHub repo course on Julia](https://github.com/mitmath/18S096/blob/master/lectures/lecture7/Metaprogramming.ipynb)
 """
 
-# ╔═╡ fbedf072-c766-477b-b33c-ec5e8009871a
-TableOfContents()
+# ╔═╡ 5bbd9a93-8c24-4540-b10a-7224b9593902
+ExtendedTableOfContents(hide_preamble = false)
+
+# ╔═╡ e54b7e1d-032c-4584-98e4-bd85e848d9ac
+click_to_present = present_button()
 
 # ╔═╡ 2182d1ba-e22a-42cc-b0f7-23c2cdd3e487
 md"""
@@ -304,7 +318,7 @@ md"""
 
 # ╔═╡ ff6b95ee-a243-4746-93c1-8b1ee621ccef
 md"""
-## Built in Julia
+### Built in Julia
 """
 
 # ╔═╡ 9133832c-da9f-468e-a39e-d9213291c326
@@ -312,7 +326,7 @@ sum(a)
 
 # ╔═╡ 947a6dcb-20e3-495a-9f2c-c0fffa435ff7
 md"""
-## Hand written Julia
+### Hand written Julia
 """
 
 # ╔═╡ 2387e781-154e-42e5-a29a-714da67da135
@@ -413,33 +427,33 @@ Slow language (interpreted) sum example
 """
 
 # ╔═╡ c7f99e4e-6f12-4212-a67e-f9bb5e6ba37e
-function myinterpeted_sum(x, y)
+function myinterpeted_add(x, y)
     if isa(x, Float64) && isa(y, Float64)
-        return add64_using_the_fpu(x, y)            # FPU = floating-point unit
+        return Base.add_float(x, y)            # FPU = floating-point unit
     elseif isa(x, Float32) && isa(y, Float32)
         return add32_using_the_fpu(x, y)
     elseif isa(x, Int64) && isa(y, Int64)
-        return add64_using_the_integer_unit(x, y)   # integer unit is in the "core CPU"
+        return Base.add64_using_the_integer_unit(x, y)   # integer unit is in the "core CPU"
     elseif isa(x, Int32) && isa(y, Int32)
         return add64_using_the_integer_unit(x, y)
     else
         # convert everything to Float64
         x64, y64 = Float64(x), Float64(y)
-        return add64_using_the_fpu(x64, y64)
+        return Base.add_float(x64, y64)
     end
 end  
 
-# ╔═╡ 594a32d4-b4e1-44e4-9b1b-f73b6de456b7
-md"""
-In a **compiled language**, the **types are known in advance** so that the right method can be hard-wired into the compiled code.
+# ╔═╡ 95bb7b02-38ff-422d-ad99-868f1291e2e7
+function my_bad_sum(a)
+	s = 0
+	for i in eachindex(a)
+		s = myinterpeted_add(s, a[i])
+	end
+	return s
+end
 
-Julia doesn't require you to annotate types: it infers them from the types of the arguments.
-
-Matlab and Python, sometimes through add-ons, attempt to do the same thing, and when it works you get pretty good performance. But it places a lot of requirements on your code and work only in certain circumstances.
-
-Julia was designed "from the ground up" to allow inference to work well most of the time, not just within a single function but from the entry point of a computational pipeline to its terminus.
-
-"""
+# ╔═╡ e7067628-8a7c-4f2d-abfd-05f7b3583f51
+@belapsed my_bad_sum(a)
 
 # ╔═╡ 9411dd19-4f8f-44a6-a4be-23a155be83b5
 md"""
@@ -490,44 +504,6 @@ float(res_rat)
 # ╔═╡ 69930950-a11a-4e8b-807c-b9e02fa99bf3
 log(2)
 
-# ╔═╡ 736e8e3d-3d28-4773-b92c-04fbc312a677
-md"""
-## Conclusion
-"""
-
-# ╔═╡ a3e16c61-a577-4735-8f19-78dda7c5887d
-@which 1 + 10
-
-# ╔═╡ a6539e4b-b96e-4348-af23-8913ff4143f2
-@which 1//2 + 10//2
-
-# ╔═╡ 52c0b6a0-dfce-4085-938d-059efe412872
-@which 1 + 1.0
-
-# ╔═╡ 5f78c357-09ea-4be5-bf73-b1f197c6fdaa
-@which [1 0] + [0 1]
-
-# ╔═╡ 40e6608a-af5e-4bde-8bc6-bfc2d6dc2a95
-md"""
-Basic operations like the sum have hundreds of implementations, each designed for specific combinations of input types.
-"""
-
-# ╔═╡ 3536cc42-f5e2-4e24-99a8-97caad027f6c
-length(methods(+))
-
-# ╔═╡ 7a1010fe-fad5-4dc3-b423-cd523e87fe3a
-md"""
-Clever compiler:
-"""
-
-# ╔═╡ c79fd60e-7e2b-43e3-a214-a8c73afa4c15
-@code_warntype ju_hand_sum([1,1,2])
-
-# ╔═╡ 9a21c1cb-ecd3-43ab-85f0-1a3b79d88784
-md"""
-Generic code not only for addition e.g. [ExpectationMaximization.jl](https://github.com/dmetivie/ExpectationMaximization.jl)
-"""
-
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -535,6 +511,7 @@ BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
 Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+PlutoExtras = "ed5d0301-4775-4676-b788-cf71e66ff8ed"
 PlutoTeachingTools = "661c6b06-c737-4d37-b85c-46df65de6f69"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
@@ -546,6 +523,7 @@ Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 BenchmarkTools = "~1.3.2"
 HypertextLiteral = "~0.9.5"
 Plots = "~1.39.0"
+PlutoExtras = "~0.7.11"
 PlutoTeachingTools = "~0.2.13"
 PlutoUI = "~0.7.54"
 PyCall = "~1.96.2"
@@ -558,7 +536,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.9.4"
 manifest_format = "2.0"
-project_hash = "b8b3dde2f93c098306d0c3053229bdb8ae92e6cf"
+project_hash = "87381fb356435d5f9bb14c19caa8f2ec332c7686"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
@@ -1258,6 +1236,18 @@ version = "1.39.0"
     ImageInTerminal = "d8c32880-2388-543b-8c61-d9f865259254"
     Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
 
+[[deps.PlutoDevMacros]]
+deps = ["AbstractPlutoDingetjes", "DocStringExtensions", "HypertextLiteral", "InteractiveUtils", "MacroTools", "Markdown", "Pkg", "Random", "TOML"]
+git-tree-sha1 = "06fa4aa7a8f2239eec99cf54eeddd34f3d4359be"
+uuid = "a0499f29-c39b-4c5c-807c-88074221b949"
+version = "0.6.0"
+
+[[deps.PlutoExtras]]
+deps = ["AbstractPlutoDingetjes", "HypertextLiteral", "InteractiveUtils", "Markdown", "PlutoDevMacros", "PlutoUI", "REPL"]
+git-tree-sha1 = "382b530c2ebe31f4a44cb055642bbd71197fbd20"
+uuid = "ed5d0301-4775-4676-b788-cf71e66ff8ed"
+version = "0.7.11"
+
 [[deps.PlutoHooks]]
 deps = ["InteractiveUtils", "Markdown", "UUIDs"]
 git-tree-sha1 = "072cdf20c9b0507fdd977d7d246d90030609674b"
@@ -1892,6 +1882,8 @@ version = "1.4.1+1"
 # ╠═6482ef49-c4f7-4001-906e-708576ec02b6
 # ╠═2e07b790-d3f0-4266-afe8-6d4ef574e0be
 # ╠═fbedf072-c766-477b-b33c-ec5e8009871a
+# ╠═5bbd9a93-8c24-4540-b10a-7224b9593902
+# ╠═e54b7e1d-032c-4584-98e4-bd85e848d9ac
 # ╟─2182d1ba-e22a-42cc-b0f7-23c2cdd3e487
 # ╟─805e4940-b8d0-48dd-9517-01e0ca5c18d2
 # ╟─acf3f33b-6161-4ff0-be59-216fcbf79fd2
@@ -1944,7 +1936,7 @@ version = "1.4.1+1"
 # ╟─18b95cdc-839f-4a63-a418-2e08bd67667c
 # ╟─ff6b95ee-a243-4746-93c1-8b1ee621ccef
 # ╠═9133832c-da9f-468e-a39e-d9213291c326
-# ╟─947a6dcb-20e3-495a-9f2c-c0fffa435ff7
+# ╠═947a6dcb-20e3-495a-9f2c-c0fffa435ff7
 # ╠═2387e781-154e-42e5-a29a-714da67da135
 # ╠═705a4b38-5b2a-4bb2-b0fb-5a066c1022b6
 # ╟─696a185a-ea19-4daa-8104-1fde96e54249
@@ -1970,7 +1962,8 @@ version = "1.4.1+1"
 # ╟─5f777b78-b8ba-49a8-bc37-dc139a39ef32
 # ╟─a4f354d0-4697-4955-9951-cf45635e37e4
 # ╠═c7f99e4e-6f12-4212-a67e-f9bb5e6ba37e
-# ╟─594a32d4-b4e1-44e4-9b1b-f73b6de456b7
+# ╠═95bb7b02-38ff-422d-ad99-868f1291e2e7
+# ╠═e7067628-8a7c-4f2d-abfd-05f7b3583f51
 # ╟─9411dd19-4f8f-44a6-a4be-23a155be83b5
 # ╟─0e19731f-3db1-48d2-a947-cd40e1bdbea1
 # ╟─1f51accf-d150-421f-ad3e-2982b39dbbcf
@@ -1983,15 +1976,5 @@ version = "1.4.1+1"
 # ╠═fe6a9ce4-ee45-4271-922d-08148bbe748e
 # ╠═2dd8b561-b001-44cf-b1de-d5048385c855
 # ╠═69930950-a11a-4e8b-807c-b9e02fa99bf3
-# ╟─736e8e3d-3d28-4773-b92c-04fbc312a677
-# ╠═a3e16c61-a577-4735-8f19-78dda7c5887d
-# ╠═a6539e4b-b96e-4348-af23-8913ff4143f2
-# ╠═52c0b6a0-dfce-4085-938d-059efe412872
-# ╠═5f78c357-09ea-4be5-bf73-b1f197c6fdaa
-# ╟─40e6608a-af5e-4bde-8bc6-bfc2d6dc2a95
-# ╠═3536cc42-f5e2-4e24-99a8-97caad027f6c
-# ╟─7a1010fe-fad5-4dc3-b423-cd523e87fe3a
-# ╠═c79fd60e-7e2b-43e3-a214-a8c73afa4c15
-# ╟─9a21c1cb-ecd3-43ab-85f0-1a3b79d88784
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
