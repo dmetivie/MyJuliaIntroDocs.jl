@@ -78,13 +78,15 @@ Dans VSCode installer l'[extension Julia](https://marketplace.visualstudio.com/i
 
 J'ai divisé en plusieurs notebook la présentation pour alléger chacun et que vous puissiez vous concentrer sur ceux qui vous intéressent.
 
-1. Présentation générique (notebook Pluto)
+1. Présentation de Julia (notebook Pluto)
 2. [`notebook_2_multiple_dispach_on_animals.ipynb`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/master/notebooks/notebook_2_multiple_dispach_on_animals.ipynb) example de "multiple dispach" (notebook Jupyter) 
 3. [`notebook_3_speed_sum_example.jl`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/master/notebooks/notebook_3_speed_sum_example.jl) exemple: performance + code générique (notebook Pluto). Pour fonctionner pleinement, celui-ci nécessite que vous ayez installé un compilateur C, R, Python  avec `numpy`. Même s'il vous manque un de ces éléments, le reste du notebook devrait fonctionner quand même.
-4. Exemple: Optimisation et ODE (notebook Pluto)
+4. Exemple: Optimisation + ODEs + Bayesian (notebook Pluto) [`notebook_4_Optim_DiffEq.jl`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/master/notebooks/notebook_4_Optim_DiffEq.jl). Un peu lourd!
 5. Présentation des GANs
-6. Application GAN avec le package `Flux.jl` d'abord sur un exemple simple [`notebook_5_GAN_simple_example.ipynb`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/9a3c4824d316b625d4c214b855cedc2973cd164e/notebooks/notebook_5_GAN_simple_example.ipynb) puis sur l'ensemble de données MNIST (notebook Jupyter).
+6. Application GAN avec le package `Flux.jl` d'abord sur un exemple simple [`notebook_5_GAN_simple_example.ipynb`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/9a3c4824d316b625d4c214b855cedc2973cd164e/notebooks/notebook_5_GAN_simple_example.ipynb) puis sur l'ensemble de données MNIST (notebook Jupyter) [`notebook_6_dcGAN_MNIST.ipynb`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/master/notebooks/notebook_6_dcGAN_MNIST.ipynb).
 
+!!! note
+    Voici une version `.html` (pas besoin de Julia) statique des notebooks [`notebook_3_speed_sum_example.jl`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/master/notebooks/notebook_3_speed_sum_example.html) et [`notebook_4_Optim_DiffEq.jl`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/master/notebooks/notebook_4_Optim_DiffEq.html)
 ### Notebook Pluto
 
 Pour charger un notebook Pluto, il ne s'agit que de fichiers `.jl` normaux avec de nombreux commentaires que Pluto utilisera pour générer le notebook et installer les packages.
