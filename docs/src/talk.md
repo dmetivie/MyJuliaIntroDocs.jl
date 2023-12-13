@@ -87,6 +87,7 @@ J'ai divisé en plusieurs notebook la présentation pour alléger chacun et que 
 
 !!! note
     Voici une version `.html` (pas besoin de Julia) statique des notebooks [`notebook_3_speed_sum_example.jl`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/master/notebooks/notebook_3_speed_sum_example.html) et [`notebook_4_Optim_DiffEq.jl`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/master/notebooks/notebook_4_Optim_DiffEq.html)
+    
 ### Notebook Pluto
 
 Pour charger un notebook Pluto, il ne s'agit que de fichiers `.jl` normaux avec de nombreux commentaires que Pluto utilisera pour générer le notebook et installer les packages.
