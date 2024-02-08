@@ -216,6 +216,11 @@ md"""
 [Announcing the release of Julia 1.0](https://julialang.org/blog/2018/08/one-point-zero/) -- Julia developers
 """
 
+# ╔═╡ a039f988-8993-4538-bee9-d4fc6bb94aaf
+md"""
+Today v1.9 soon 1.10
+"""
+
 # ╔═╡ a3ea30b3-0e2a-407d-b5ba-e577e63f9e8f
 md"""
 ## 2022: user testimonies
@@ -289,7 +294,7 @@ md"""
 
 # ╔═╡ 1fb9b22a-61a4-4c4c-b1c2-71b27b303bc2
 md"""
-Pseudocode for a `sum` function as learned at school
+Pseudocode for a `sum` of a vector `x` as learned at school
 ```bash
 s = 0
 for i in 1:N
@@ -314,11 +319,12 @@ centerslidebreak
 # ╔═╡ 86d5f4a4-12bc-40db-9afd-b26a3de633f9
 blockquote(md"Experienced Matlab users like to say **“Life is too short to spend writing for loops.”**", md"""“1998 Getting Started with Matlab manual” (and other editions)""")
 
-# ╔═╡ 03963223-e4fb-4399-867e-5b1222f3ff73
+# ╔═╡ 877544e1-cf7c-4f6e-a746-67e5f418611d
 md"""
-- “for loops” are **NOT** inherently slow by themselves!! 
-- In dynamic languages, the system does not know the types of variables beforehand. 
-⇒ At each iteration, it must infer types. Repeating this operation again and again is what takes time
+!!! note "Vectorized `sum` are just loop in C/C++/Fortan"
+	- “for loops” are **NOT** inherently slow by themselves!! 
+	- In dynamic languages, the system does not know the types of variables beforehand. 
+	⇒ At each iteration, it must infer types. Repeating this operation again and again is what takes time
 """
 
 # ╔═╡ 1572d39d-dc9e-4b5a-95c6-53beeb32af17
@@ -331,9 +337,22 @@ md"""
 	[^example] Matlab example for averaging pixels; see [here](https://github.com/timholy/AdvancedScientificComputing/blob/main/lectures/intro/intro-julia.ipynb) for context and [here](https://www.mathworks.com/matlabcentral/answers/307297-neighbors-of-a-pixel) for original post.
 """
 
+# ╔═╡ b89236fb-7775-4e16-93dc-bc9a025b3023
+md"""
+!!! warning "Conclusion: Interpreted languages are not ideal for large complex taks"
+"""
+
 # ╔═╡ 36863f50-68b0-42bc-a038-e5d02c58e8c1
 md"""
 ## Developing burden
+"""
+
+# ╔═╡ ea3bf775-808e-42e1-85c6-7d432a44db41
+md"""
+#### In a lab I visited
+
+> "We just finished wrapping/translating our huge package into C++, so now it is super fast!"
+It took X years and N postdocs to write **glue code**
 """
 
 # ╔═╡ eeca76c4-491b-4197-8580-e4010df945f3
@@ -349,12 +368,9 @@ md"""
 **Why not contribute to existing package, rather than multiplying the number of similar packages?**
 """
 
-# ╔═╡ ea3bf775-808e-42e1-85c6-7d432a44db41
+# ╔═╡ affc0d38-2833-403b-8610-eb03d10f469d
 md"""
-#### In a lab I visited
-
-> "We just finished wrapping/translating our huge package into C++, so now it is super fast!"
-It took X years and N postdocs
+!!! warning "All that is related to the Two language problem"
 """
 
 # ╔═╡ c0614c97-bd5e-440b-9381-0427f3758c8c
@@ -362,9 +378,9 @@ centerslidebreak
 
 # ╔═╡ 499c26ba-8df5-4087-80de-a3efb5293f16
 question_box(md"""
-Who never ran into compatibility, installation issue with Python/R?
+Who never ran into **compatibility**, installation issue with Python/R?
 
-Compatibility issues! The more dependence (especially with different language, compilers) the more issue on reproducibility, compatibility, installation, reach
+Compatibility issues! The more dependence (especially with different language, compilers) the more issue on reproducibility, compatibility, installation, read code source
 """)
 
 # ╔═╡ f767e601-08da-436a-a4ea-fc92e18c1bec
@@ -426,7 +442,7 @@ md"""
 # ╔═╡ 1a1b54fd-61e3-4fd3-a3d7-77f015c9d0be
 md"""
 !!! tip "Good for"
-	- Package, environment management
+	- Package `]`, environment management
 	- Shell mode
 	- Quick look/computations
 	- R console
@@ -474,6 +490,12 @@ md"""
 !!! danger "Bad for"
 	- Development
 	- Sharing/Reproducibility e.g. `.ipynb` format!
+"""
+
+# ╔═╡ 62c5b08c-b574-4043-8bab-5493f2462dd7
+md"""
+!!! note "Did you notice"
+	**Ju**(lia) **Py**(thon) **R**
 """
 
 # ╔═╡ 8b9ce2bc-f8a9-4cbf-8fd8-e0bf31dbbee9
@@ -614,9 +636,6 @@ md"""
 # ╔═╡ a16a6f2d-1a2a-48ff-a303-e6f0c80a3289
 question_box(md"What will the following code return? Uncomment the cell to see")
 
-# ╔═╡ e498d0c5-104e-4db6-91fc-9562faa7dfb4
-# [1, 2, 3] + 1
-
 # ╔═╡ f140a80d-1ec3-4a0c-b35b-1d117c3e7adc
 exp.([1, 2, 3])
 
@@ -653,8 +672,17 @@ md"""
 ### Distributions
 """
 
+# ╔═╡ b61894d9-bdbd-4f9b-b4ec-a6dd555a5aec
+dist = Normal()#MvNormal([1,-1.])
+
+# ╔═╡ 3819d633-4531-4053-b063-501c7060d7a5
+rand(dist, 10)
+
 # ╔═╡ f8a8d46a-a4d9-42a0-a5f9-8ee04ccc15a9
 question_box(md"Why does it return an error?")
+
+# ╔═╡ 4449508f-df28-4d2d-aa14-46dd0902de46
+rand(dist, 1)
 
 # ╔═╡ e500f340-b53c-46b2-a3fd-46d563c86df9
 md"""
@@ -713,6 +741,9 @@ md"""
 Types are not mandatory but can be specified in some situations! 
 """
 
+# ╔═╡ 6782cd70-71dd-4504-a6b6-e4b0da3d9126
+Float16<:AbstractFloat
+
 # ╔═╡ 772d1148-5181-425e-b2ca-365aa2b5c2a4
 md"""
 ## Clever compiler
@@ -728,6 +759,9 @@ md"""
 !!! note "Clever compiler (1/2)"
 	The compiler infers variable types very well.
 """
+
+# ╔═╡ 4cd408a5-f78a-4393-9ffe-61598f17f326
+fill(2, 5)
 
 # ╔═╡ 259910c4-5af2-44c7-a77e-3fd0de1d86e0
 centerslidebreak
@@ -750,6 +784,11 @@ md"""
 
 # ╔═╡ 89c1d82b-c661-42c4-b254-974d673cf9b7
 YouTube("kc9HwsxE1OY", 1, 26)
+
+# ╔═╡ ee3c9d50-72e2-4f11-b486-1275d20d5c72
+md"""
+**JuliaCon 2019 | The Unreasonable Effectiveness of Multiple Dispatch | Stefan Karpinski**
+"""
 
 # ╔═╡ eb5f8c91-b636-46ff-bd28-023116954829
 md"""
@@ -1169,14 +1208,14 @@ plot(date, sin.(Ω * t); label=nothing)
 cartesian(r, θ, ϕ = 0) = r*sin(θ)*cos(ϕ), r*sin(θ)*sin(ϕ), r*cos(θ) 
 
 # ╔═╡ 577205fb-1ab3-4305-9add-042315b079c9
-∇f(x)  = [2x[1], 2x[2]]
+∇f(x) = [2x[1], 2x[2]]
 
 # ╔═╡ 5726299f-3857-4467-bea2-dceefb9ba7b7
 ∇²f(x) = 2*I
 
 # ╔═╡ aa3e7729-3b2e-4824-92af-09d15894b521
 function myfillmat(x, n)
-	v2 = fill(n, x)
+	v2 = fill(x, n)
 	v = sqrt.(v2)
 	M = v * v'
 	return M
@@ -1226,8 +1265,19 @@ let
 	end
 end
 
+# ╔═╡ 6fabb945-3626-452b-a471-4abcadbb9592
+function λ(x,y)
+	1+1
+end
+
 # ╔═╡ 8c1fc621-500f-484d-91d8-75e8d564ce9e
-f(x)   = x[1]^2 + x[2]^2
+f(x) = x[1]^2 + x[2]^2
+
+# ╔═╡ e498d0c5-104e-4db6-91fc-9562faa7dfb4
+[1, 2, 3] .+ 1
+
+# ╔═╡ bfa46a2d-36ad-41c3-befb-053fa5c99b23
+rand(dist, 1) .+ 1
 
 # ╔═╡ ac7408c8-c366-46ab-9515-93bc55dda4ac
 (1+2)::AbstractFloat
@@ -1235,14 +1285,17 @@ f(x)   = x[1]^2 + x[2]^2
 # ╔═╡ ee8b8ad6-70d9-49d5-b2c0-1be93da8255c
 (1+2)::Int
 
-# ╔═╡ b676581c-a8ec-44ae-a4d3-31efd57ef445
-@which true + true
-
 # ╔═╡ 16af7868-f4fe-4720-98f7-095f96b0ac7a
 @which 1 + 1
 
+# ╔═╡ b676581c-a8ec-44ae-a4d3-31efd57ef445
+@which true + true
+
 # ╔═╡ 29b05d28-662a-4413-ba9c-bd45e9e50135
 @which 1//1 + 1//1
+
+# ╔═╡ f0d0773c-e933-487d-939d-5bba8e886fb5
+1//3 + 1//2
 
 # ╔═╡ cf12ffe3-42b0-43f7-bf2a-bc13ea12ce05
 @which 1.0 + 1.0
@@ -1279,12 +1332,6 @@ Base.:/(a::Dual, b::Dual) = Dual(a.x / b.x, (b.x * a.δ - a.x * b.δ) / b.x^2)
 
 # ╔═╡ 37e6add7-46c6-4ece-9b14-f2bafb66a8a1
 φ₁.([1, 2, 3])
-
-# ╔═╡ b61894d9-bdbd-4f9b-b4ec-a6dd555a5aec
-dist = Exponential(1/2)
-
-# ╔═╡ bfa46a2d-36ad-41c3-befb-053fa5c99b23
-rand(dist, 1) + 1
 
 # ╔═╡ 0e0fac4b-02de-4ec1-b54f-b78a68aaa18e
 # ╠═╡ disabled = true
@@ -3561,6 +3608,7 @@ version = "1.4.1+1"
 # ╟─a7d86d97-4e98-4f87-acce-92241e9b9d51
 # ╟─7b21340d-e638-4581-afa9-878fc0d3842f
 # ╟─fd55ba42-e17e-47f7-a629-1b0a3f2c2c74
+# ╟─a039f988-8993-4538-bee9-d4fc6bb94aaf
 # ╟─a3ea30b3-0e2a-407d-b5ba-e577e63f9e8f
 # ╟─fd937762-0915-4655-846a-0e6fa735e239
 # ╟─36dcfe6a-d9bc-448f-a359-620261eaa6df
@@ -3579,11 +3627,13 @@ version = "1.4.1+1"
 # ╟─f09162c1-f36c-404a-b342-10e9f9339d17
 # ╟─eaf2cc1a-f844-4b00-897f-245207963a89
 # ╟─86d5f4a4-12bc-40db-9afd-b26a3de633f9
-# ╟─03963223-e4fb-4399-867e-5b1222f3ff73
+# ╟─877544e1-cf7c-4f6e-a746-67e5f418611d
 # ╟─1572d39d-dc9e-4b5a-95c6-53beeb32af17
+# ╟─b89236fb-7775-4e16-93dc-bc9a025b3023
 # ╟─36863f50-68b0-42bc-a038-e5d02c58e8c1
-# ╟─eeca76c4-491b-4197-8580-e4010df945f3
 # ╟─ea3bf775-808e-42e1-85c6-7d432a44db41
+# ╟─eeca76c4-491b-4197-8580-e4010df945f3
+# ╟─affc0d38-2833-403b-8610-eb03d10f469d
 # ╟─c0614c97-bd5e-440b-9381-0427f3758c8c
 # ╟─499c26ba-8df5-4087-80de-a3efb5293f16
 # ╟─f767e601-08da-436a-a4ea-fc92e18c1bec
@@ -3604,6 +3654,7 @@ version = "1.4.1+1"
 # ╟─67e46709-8850-463e-a0be-b0dafdce2751
 # ╟─b9d8f2f3-f2b2-4f35-b792-df71e240d92a
 # ╟─e715e9bb-a9cb-49d8-ac75-16e67a4667db
+# ╟─62c5b08c-b574-4043-8bab-5493f2462dd7
 # ╟─8b9ce2bc-f8a9-4cbf-8fd8-e0bf31dbbee9
 # ╟─b527f54c-53ae-4aa6-a5f2-c61fa6633bd3
 # ╟─6232d13a-c1f9-4df2-8549-e43f6fc4ed9f
@@ -3627,6 +3678,7 @@ version = "1.4.1+1"
 # ╟─2ce2824f-52b7-444e-950f-5370b4ba59e0
 # ╟─22b1bb59-f0de-4888-9b9c-fbaf0fab773c
 # ╠═9506fe42-d4a2-4055-8429-021ff5bebb8b
+# ╠═6fabb945-3626-452b-a471-4abcadbb9592
 # ╠═228acf65-2f5b-4e45-9a7e-2bdef932105f
 # ╟─3447169b-b41f-4b63-9251-ef6d14846b82
 # ╠═e832133e-6b8a-4557-be97-6d54f2e1b6b3
@@ -3655,8 +3707,10 @@ version = "1.4.1+1"
 # ╟─bff77839-efac-488a-be60-da970266c860
 # ╟─edef726b-0eb6-46b9-935e-c151977d15a0
 # ╠═b61894d9-bdbd-4f9b-b4ec-a6dd555a5aec
+# ╠═3819d633-4531-4053-b063-501c7060d7a5
 # ╟─f8a8d46a-a4d9-42a0-a5f9-8ee04ccc15a9
 # ╠═bfa46a2d-36ad-41c3-befb-053fa5c99b23
+# ╠═4449508f-df28-4d2d-aa14-46dd0902de46
 # ╟─e500f340-b53c-46b2-a3fd-46d563c86df9
 # ╟─9425a024-fe6d-4cc8-b2ab-25e6a20bf4ed
 # ╟─fbb026ed-d295-44dc-93c5-1455f3ffd848
@@ -3666,22 +3720,26 @@ version = "1.4.1+1"
 # ╟─c3b6d389-52ac-421d-ab2a-d1cbc13c970c
 # ╠═ac7408c8-c366-46ab-9515-93bc55dda4ac
 # ╠═ee8b8ad6-70d9-49d5-b2c0-1be93da8255c
+# ╠═6782cd70-71dd-4504-a6b6-e4b0da3d9126
 # ╟─772d1148-5181-425e-b2ca-365aa2b5c2a4
 # ╟─e6429073-ffe9-4153-b90f-e55b27e2817d
 # ╟─42dd87b3-b9a2-4f57-bcac-3a191ab76380
+# ╠═4cd408a5-f78a-4393-9ffe-61598f17f326
 # ╠═aa3e7729-3b2e-4824-92af-09d15894b521
 # ╠═988269f3-1e76-4cc3-88a9-392620efc000
 # ╟─259910c4-5af2-44c7-a77e-3fd0de1d86e0
 # ╟─c9fe918e-6910-41f8-9042-a35e7fe1fd00
-# ╠═b676581c-a8ec-44ae-a4d3-31efd57ef445
 # ╠═16af7868-f4fe-4720-98f7-095f96b0ac7a
+# ╠═b676581c-a8ec-44ae-a4d3-31efd57ef445
 # ╠═29b05d28-662a-4413-ba9c-bd45e9e50135
+# ╠═f0d0773c-e933-487d-939d-5bba8e886fb5
 # ╠═cf12ffe3-42b0-43f7-bf2a-bc13ea12ce05
 # ╠═8a1c1942-ec43-452f-9b35-0a99587b26d8
 # ╟─9c024d61-b080-4d33-8bdf-d887daad54a6
 # ╠═18a34595-d7ee-4131-939f-a48f197e87f1
 # ╟─5a13d6f6-cb6b-4e2b-b190-0f9bdfaf3098
 # ╟─89c1d82b-c661-42c4-b254-974d673cf9b7
+# ╟─ee3c9d50-72e2-4f11-b486-1275d20d5c72
 # ╟─eb5f8c91-b636-46ff-bd28-023116954829
 # ╟─67abb3db-2e1e-4edf-99c2-f17f44a47b9f
 # ╟─c5839b75-d47f-4545-8b21-5d15b0f39e6f

@@ -1,17 +1,15 @@
-# [Talk 2 neurones](https://reseau2neurones.mathnum.inrae.fr/node/10)
+# Intro à Julia
 
-Page en construction! Contactez moi si quelque chose ne marche pas.
+Cette page à été créé à l'occasion de mon talk dans le résaux INRAE [2 neurones](https://reseau2neurones.mathnum.inrae.fr/node/10)
+
+Contactez moi si quelque chose ne marche pas.
 
 ## Programme
 
-En deux heures, nous allons à la fois introduire les bases du langage de programmation Julia et les Réseaux Antagonistes Génératifs (GAN). Pour Julia, nous ne discuterons pas seulement de la rapidité, mais aussi de certaines fonctionnalités essentielles, telles que le "multiple dispach" (définition multiple), qui rendent le langage unique, par exemple en termes d’expressivité et de composition de packages.
+Nous allons à la fois introduire les bases du langage de programmation Julia et les Réseaux Antagonistes Génératifs (GAN). Pour Julia, nous ne discuterons pas seulement de la rapidité, mais aussi de certaines fonctionnalités essentielles, telles que le "multiple dispach" (définition multiple), qui rendent le langage unique, par exemple en termes d’expressivité et de composition de packages.
 Dans la dernière partie, après une brève introduction des concepts fondamentaux des GANS, nous effectuerons une application simple (en Julia !).
 
 Le mode de présentation sera assez interactif avec des parties de présentations et d'autres de travaux pratiques/expérimentations.
-
-## Date et lien visioconférence
-
-Nous vous convions au webinaire qui aura lieu le mercredi 13 décembre de 14h à 16h, en utilisant le lien suivant : [https://inrae-fr.zoom.us/j/9303986691](https://inrae-fr.zoom.us/j/9303986691)
 
 ## Instructions d'installation
 
@@ -86,7 +84,7 @@ J'ai divisé en plusieurs notebook la présentation pour alléger chacun et que 
 6. Application GAN avec le package `Flux.jl` d'abord sur un exemple simple [`notebook_5_GAN_simple_example.ipynb`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/9a3c4824d316b625d4c214b855cedc2973cd164e/notebooks/notebook_5_GAN_simple_example.ipynb) puis sur l'ensemble de données MNIST (notebook Jupyter) [`notebook_6_dcGAN_MNIST.ipynb`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/master/notebooks/notebook_6_dcGAN_MNIST.ipynb).
 
 !!! note
-    Voici une version `.html` (pas besoin de Julia) statique des notebooks (à télécharger et ouvrir dans un navigateur) [`notebook_1_Presentation.html`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/master/notebooks/notebook_1_Presentation.html),  [`notebook_3_speed_sum_example.html`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/master/notebooks/notebook_3_speed_sum_example.html) et [`notebook_4_Optim_DiffEq.html`](https://github.com/dmetivie/MyJuliaIntroDocs.jl/blob/master/notebooks/notebook_4_Optim_DiffEq.html)
+    Voici une version `.html` (pas besoin de Julia) statique des notebooks (à télécharger et ouvrir dans un navigateur) [`notebook_1_Presentation.html`](https://raw.githack.com/dmetivie/MyJuliaIntroDocs.jl/master/notebooks/notebook_1_Presentation.html),  [`notebook_3_speed_sum_example.html`](https://raw.githack.com/dmetivie/MyJuliaIntroDocs.jl/master/notebooks/notebook_3_speed_sum_example.html) et [`notebook_4_Optim_DiffEq.html`](https://raw.githack.com/dmetivie/MyJuliaIntroDocs.jl/master/notebooks/notebook_4_Optim_DiffEq.html)
 
 ### Notebook Pluto
 

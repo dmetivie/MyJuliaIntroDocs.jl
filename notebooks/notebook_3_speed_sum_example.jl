@@ -57,6 +57,12 @@ md"""
 [^credit]: [Example inspired from this GitHub repo course on Julia](https://github.com/mitmath/18S096/blob/master/lectures/lecture7/Metaprogramming.ipynb)
 """
 
+# ╔═╡ 27b29997-ee31-4faf-a601-65d4443e8747
+md"""
+!!! warning 
+	In the Status (bottom right) at the bottom, one can make a box `notify me` when it's done
+"""
+
 # ╔═╡ 5bbd9a93-8c24-4540-b10a-7224b9593902
 ExtendedTableOfContents(hide_preamble = false)
 
@@ -189,7 +195,7 @@ c_hand_sum(X::Array{Float64}) = ccall(("c_sum", Clib_path), Float64, (Csize_t, P
 c_hand_sum(a)
 
 # ╔═╡ c8031766-073d-4a2b-a857-7f2c9850c1bb
-c_hand_sum(a) ≈ c_hand_sum(a)
+c_hand_sum(a) ≈ sum(a)
 
 # ╔═╡ 7d85819e-234b-4197-b54a-561d41a6b30e
 md"""
@@ -1877,6 +1883,7 @@ version = "1.4.1+1"
 
 # ╔═╡ Cell order:
 # ╟─0f8222be-cf07-4315-9173-bb6fa20316e1
+# ╟─27b29997-ee31-4faf-a601-65d4443e8747
 # ╠═099ffa9e-523d-4f65-be35-8a6e806a5b30
 # ╠═d81ee84b-c764-49d1-8591-763451b2c0d9
 # ╠═6482ef49-c4f7-4001-906e-708576ec02b6
@@ -1936,7 +1943,7 @@ version = "1.4.1+1"
 # ╟─18b95cdc-839f-4a63-a418-2e08bd67667c
 # ╟─ff6b95ee-a243-4746-93c1-8b1ee621ccef
 # ╠═9133832c-da9f-468e-a39e-d9213291c326
-# ╠═947a6dcb-20e3-495a-9f2c-c0fffa435ff7
+# ╟─947a6dcb-20e3-495a-9f2c-c0fffa435ff7
 # ╠═2387e781-154e-42e5-a29a-714da67da135
 # ╠═705a4b38-5b2a-4bb2-b0fb-5a066c1022b6
 # ╟─696a185a-ea19-4daa-8104-1fde96e54249
