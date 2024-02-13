@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.35
+# v0.19.37
 
 #> custom_attrs = ["hide-enabled"]
 #> 
@@ -9,7 +9,7 @@
 #> 
 #>     [[frontmatter.author]]
 #>     name = "David Métivier"
-#>     url = "http://www.cmap.polytechnique.fr/~david.metivier/"
+#>     url = "https://david.metivier.pages.mia.inra.fr/website/"
 
 using Markdown
 using InteractiveUtils
@@ -53,37 +53,12 @@ begin
 	using PlutoReport: Title, centerslidebreak
 end
 
-# ╔═╡ 819b644e-a7a0-4d49-83d4-01c41653eea2
+# ╔═╡ 908af3d7-63ba-4e79-9311-786bce192079
 md"""
-Package extension to pimp Pluto
+Click on the button bellow to go to presentation mode. Then use keyboard arrows to navigate. 
+(Sometime you have to click on the rigth of the notebook for arrows to work.)
+You can fold/unfold the table of content.
 """
-
-# ╔═╡ 695c8e1b-e9f7-4aa9-9543-5ed69227e7ab
-md"""
-Font size $(@bind fontsize_md NumberField(1:100, default=25))
-"""
-
-# ╔═╡ 8b8af85b-8327-4f3b-9134-4b6d17d69ad4
-md"""
-Page width = $(@bind max_width NumberField(1:100, default=70))
-"""
-
-# ╔═╡ d44835c4-ab05-4258-a841-a55521f8cec9
-begin
-	md_font=".markdown{ font-size: $(string(fontsize_md))px; }"
-	max_width_html="max-width: $(max_width)%;"
-	htl"""<style>
-	pluto-output>div>img { margin: auto; display: block; }
-    .toc-row { margin: 0 !important; padding: 0.5 !important; }
-	main {
-	    $(max_width_html)
-	}
-	$(md_font)
-	"""
-end
-
-# ╔═╡ 0c32f263-55ab-40d2-a626-1825109d2665
-ExtendedTableOfContents(hide_preamble = false)
 
 # ╔═╡ 6afdd882-b89b-4bad-9aa4-cd4867551b92
 click_to_present = present_button()
@@ -113,7 +88,7 @@ md"""
 """
 
 # ╔═╡ a8f66490-b43e-484d-80cb-fa7c74370d70
-Resource("https://david.metivier.pages.mia.inra.fr/website/pic/flowchart_inrae_current_with_dates.svg", :width => 900)
+Resource("https://david.metivier.pages.mia.inra.fr/website/pic/research/flowchart_inrae.svg", :width => 900)
 
 # ╔═╡ cc0a50bf-60ed-4291-a704-9b1095335ab3
 md"""
@@ -1112,6 +1087,26 @@ md"""
 It will take a few second to run if you activate the cell (on the rigth). The result is a pretty GIF.
 """
 
+# ╔═╡ 0e0fac4b-02de-4ec1-b54f-b78a68aaa18e
+# ╠═╡ disabled = true
+#=╠═╡
+let
+	xc, yc = -0.55, 0.61
+	x0, x1 = xc - 2, xc + 2
+	y0, y1 = yc - 2, yc + 2
+	anim = @animate for t in 1:50
+	    x, y = range(x0, x1; length=500), range(y0, y1; length=500)
+	    heatmap(
+			x, y, -log.(mandelbrot.(x' .+ y .* im));
+			aspect_ratio=1,border=:none,legend=:none
+		)
+	    x0, x1 = (15x0 + x1)/16, (15x1 + x0)/16
+		y0, y1 = (15y0 + y1)/16, (15y1 + y0)/16 
+	end
+	gif(anim,"mandelbrot_zooms.gif", fps=10)
+end
+  ╠═╡ =#
+
 # ╔═╡ 01c815ae-f018-425a-995d-fda5892d7ed2
 md"""
 ## Numerical analysis
@@ -1189,11 +1184,6 @@ end
 
 # ╔═╡ 73ebd870-8e95-4dee-8e63-3cfcb9018e08
 Base.:*(m, a::Dual) = Dual(m * a.x, m * a.δ)
-
-# ╔═╡ e1c0635c-c469-4ea6-845f-94bb7a58cac3
-function Base.show(io::IO, ::MIME"text/html", page::WebPage)
-	print(io, ShortCodes.webpage(page.url, 400*1.5,700*1.5))
-end
 
 # ╔═╡ 46088004-6d59-4059-8536-b571810d8646
 t = collect(0:0.01:2π)
@@ -1332,26 +1322,6 @@ Base.:/(a::Dual, b::Dual) = Dual(a.x / b.x, (b.x * a.δ - a.x * b.δ) / b.x^2)
 
 # ╔═╡ 37e6add7-46c6-4ece-9b14-f2bafb66a8a1
 φ₁.([1, 2, 3])
-
-# ╔═╡ 0e0fac4b-02de-4ec1-b54f-b78a68aaa18e
-# ╠═╡ disabled = true
-#=╠═╡
-let
-	xc, yc = -0.55, 0.61
-	x0, x1 = xc - 2, xc + 2
-	y0, y1 = yc - 2, yc + 2
-	anim = @animate for t in 1:50
-	    x, y = range(x0, x1; length=500), range(y0, y1; length=500)
-	    heatmap(
-			x, y, -log.(mandelbrot.(x' .+ y .* im));
-			aspect_ratio=1,border=:none,legend=:none
-		)
-	    x0, x1 = (15x0 + x1)/16, (15x1 + x0)/16
-		y0, y1 = (15y0 + y1)/16, (15y1 + y0)/16 
-	end
-	gif(anim,"mandelbrot_zooms.gif", fps=10)
-end
-  ╠═╡ =#
 
 # ╔═╡ 2ea84a40-f68a-465e-bf76-e8edb2573429
 function mysqrt(a)
@@ -1563,12 +1533,12 @@ md"""
 
 # ╔═╡ 7a18486a-847a-417b-a28e-463df434640e
 md"""
-# Where's the catch?
+# Why not?
 """
 
 # ╔═╡ 2e423841-4bdc-4a60-ac97-446abe726217
 md"""
-## Why not?
+## Commun arguments
 """
 
 # ╔═╡ 3b267f71-8ed7-44f4-a653-918ecab5f0d3
@@ -1585,9 +1555,14 @@ md"""
 
 # ╔═╡ 30d89ed0-f1a5-4537-9085-b133de9c81a4
 md"""
-- Packages are often academic in nature
+- Packages are often academic in nature even the big ones
 - Documentation and maintenance can be lacking
 - Be ready to open (and solve) issues yourself
+"""
+
+# ╔═╡ 4093f40d-b6ff-4bfe-ba44-02c23dba816c
+md"""
+To be fair this is also true for other languages!
 """
 
 # ╔═╡ f1c177e3-52c8-444e-b24e-9ff149592931
@@ -1625,12 +1600,69 @@ md"""
 - [doggo dot jl Youtube videos](https://www.youtube.com/@doggodotjl) and [associated repo](https://github.com/julia4ta/tutorials): Tutorial over plenty of basics and advanced topics.
 """
 
+# ╔═╡ 9794b531-30a4-46a3-97d2-443e6289ba6d
+md"""
+I should definitly add more!
+"""
+
 # ╔═╡ ad25926a-31e8-48c2-b22e-f96009a4872a
 md"""
 !!! warning
     Sometimes you will find resources that are a bit outdated. The language and packages have evolved quite rapidly over the past few years.
 	Always check the dates. More than 3 years old might be too old.
 """
+
+# ╔═╡ 0912c886-2a33-4fce-a805-7829f7a143e8
+md"""
+# Appendix
+"""
+
+# ╔═╡ 4a5ba23a-df28-4f34-9f24-ae1a07c6e5c0
+md"""
+## Packages used
+"""
+
+# ╔═╡ 819b644e-a7a0-4d49-83d4-01c41653eea2
+md"""
+Package extension to pimp Pluto
+"""
+
+# ╔═╡ e1c0635c-c469-4ea6-845f-94bb7a58cac3
+function Base.show(io::IO, ::MIME"text/html", page::WebPage)
+	print(io, ShortCodes.webpage(page.url, 400*1.5,700*1.5))
+end
+
+# ╔═╡ 0c32f263-55ab-40d2-a626-1825109d2665
+ExtendedTableOfContents(hide_preamble = false)
+
+# ╔═╡ 91592a94-32c7-4c60-90bb-981643e473d8
+md"""
+## Look of the notebook
+"""
+
+# ╔═╡ 695c8e1b-e9f7-4aa9-9543-5ed69227e7ab
+md"""
+Font size $(@bind fontsize_md NumberField(1:100, default=25))
+"""
+
+# ╔═╡ 8b8af85b-8327-4f3b-9134-4b6d17d69ad4
+md"""
+Page width = $(@bind max_width NumberField(1:100, default=70))
+"""
+
+# ╔═╡ d44835c4-ab05-4258-a841-a55521f8cec9
+begin
+	md_font=".markdown{ font-size: $(string(fontsize_md))px; }"
+	max_width_html="max-width: $(max_width)%;"
+	htl"""<style>
+	pluto-output>div>img { margin: auto; display: block; }
+    .toc-row { margin: 0 !important; padding: 0.5 !important; }
+	main {
+	    $(max_width_html)
+	}
+	$(md_font)
+	"""
+end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -1678,7 +1710,7 @@ Unitful = "~1.18.0"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.9.4"
+julia_version = "1.10.0"
 manifest_format = "2.0"
 project_hash = "421783bfb476053e4bef89c7967ee4933711c9a9"
 
@@ -1907,7 +1939,7 @@ weakdeps = ["Dates", "LinearAlgebra"]
 [[deps.CompilerSupportLibraries_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "e66e0078-7015-5450-92f7-15fbd957f2ae"
-version = "1.0.5+0"
+version = "1.0.5+1"
 
 [[deps.CompositeTypes]]
 git-tree-sha1 = "02d2316b7ffceff992f3096ae48c7829a8aa0638"
@@ -2445,8 +2477,13 @@ uuid = "deac9b47-8bc7-5906-a0fe-35ac56dc84c0"
 version = "8.4.0+0"
 
 [[deps.LibGit2]]
-deps = ["Base64", "NetworkOptions", "Printf", "SHA"]
+deps = ["Base64", "LibGit2_jll", "NetworkOptions", "Printf", "SHA"]
 uuid = "76f85450-5226-5b5a-8eaa-529ad045b433"
+
+[[deps.LibGit2_jll]]
+deps = ["Artifacts", "LibSSH2_jll", "Libdl", "MbedTLS_jll"]
+uuid = "e37daf67-58a4-590a-8e99-b0245dd2ffc5"
+version = "1.6.4+0"
 
 [[deps.LibSSH2_jll]]
 deps = ["Artifacts", "Libdl", "MbedTLS_jll"]
@@ -2573,7 +2610,7 @@ version = "1.1.9"
 [[deps.MbedTLS_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
-version = "2.28.2+0"
+version = "2.28.2+1"
 
 [[deps.Measurements]]
 deps = ["Calculus", "LinearAlgebra", "Printf", "Requires"]
@@ -2617,7 +2654,7 @@ uuid = "a63ad114-7e13-5084-954f-fe012c677804"
 
 [[deps.MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
-version = "2022.10.11"
+version = "2023.1.10"
 
 [[deps.MultivariatePolynomials]]
 deps = ["ChainRulesCore", "DataStructures", "LinearAlgebra", "MutableArithmetics"]
@@ -2650,12 +2687,12 @@ version = "1.3.5+1"
 [[deps.OpenBLAS_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "Libdl"]
 uuid = "4536629a-c528-5b80-bd46-f80d51c5b363"
-version = "0.3.21+4"
+version = "0.3.23+2"
 
 [[deps.OpenLibm_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "05823500-19ac-5b8b-9628-191a04bc5112"
-version = "0.8.1+0"
+version = "0.8.1+2"
 
 [[deps.OpenSSL]]
 deps = ["BitFlags", "Dates", "MozillaCACerts_jll", "OpenSSL_jll", "Sockets"]
@@ -2689,7 +2726,7 @@ version = "1.6.3"
 [[deps.PCRE2_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "efcefdf7-47ab-520b-bdef-62a2eaa19f15"
-version = "10.42.0+0"
+version = "10.42.0+1"
 
 [[deps.PDMats]]
 deps = ["LinearAlgebra", "SparseArrays", "SuiteSparse"]
@@ -2717,7 +2754,7 @@ version = "0.42.2+0"
 [[deps.Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "FileWatching", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
 uuid = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
-version = "1.9.2"
+version = "1.10.0"
 
 [[deps.PlotThemes]]
 deps = ["PlotUtils", "Statistics"]
@@ -2876,7 +2913,7 @@ deps = ["InteractiveUtils", "Markdown", "Sockets", "Unicode"]
 uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
 
 [[deps.Random]]
-deps = ["SHA", "Serialization"]
+deps = ["SHA"]
 uuid = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
 [[deps.RandomExtensions]]
@@ -3067,6 +3104,7 @@ version = "1.2.0"
 [[deps.SparseArrays]]
 deps = ["Libdl", "LinearAlgebra", "Random", "Serialization", "SuiteSparse_jll"]
 uuid = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+version = "1.10.0"
 
 [[deps.SpecialFunctions]]
 deps = ["IrrationalConstants", "LogExpFunctions", "OpenLibm_jll", "OpenSpecFun_jll"]
@@ -3096,7 +3134,7 @@ version = "1.4.2"
 [[deps.Statistics]]
 deps = ["LinearAlgebra", "SparseArrays"]
 uuid = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
-version = "1.9.0"
+version = "1.10.0"
 
 [[deps.StatsAPI]]
 deps = ["LinearAlgebra"]
@@ -3144,9 +3182,9 @@ deps = ["Libdl", "LinearAlgebra", "Serialization", "SparseArrays"]
 uuid = "4607b0f0-06f3-5cda-b6b1-a6196a1729e9"
 
 [[deps.SuiteSparse_jll]]
-deps = ["Artifacts", "Libdl", "Pkg", "libblastrampoline_jll"]
+deps = ["Artifacts", "Libdl", "libblastrampoline_jll"]
 uuid = "bea87d4a-7f5b-5778-9afe-8cc45184846c"
-version = "5.10.1+6"
+version = "7.2.1+1"
 
 [[deps.SymbolicIndexingInterface]]
 deps = ["DocStringExtensions"]
@@ -3471,7 +3509,7 @@ version = "0.4.9"
 [[deps.Zlib_jll]]
 deps = ["Libdl"]
 uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
-version = "1.2.13+0"
+version = "1.2.13+1"
 
 [[deps.Zstd_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
@@ -3512,7 +3550,7 @@ version = "0.15.1+0"
 [[deps.libblastrampoline_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8e850b90-86db-534c-a0d3-1478176c7d93"
-version = "5.8.0+0"
+version = "5.8.0+1"
 
 [[deps.libevdev_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -3558,7 +3596,7 @@ version = "1.52.0+1"
 [[deps.p7zip_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "3f19e933-33d8-53b3-aaab-bd5110c3b7a0"
-version = "17.4.0+0"
+version = "17.4.0+2"
 
 [[deps.x264_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
@@ -3580,14 +3618,7 @@ version = "1.4.1+1"
 """
 
 # ╔═╡ Cell order:
-# ╠═8edb1e45-934a-453c-a5e2-4e5a7847767a
-# ╟─819b644e-a7a0-4d49-83d4-01c41653eea2
-# ╠═dbc5dedf-cc89-4eb2-96dc-9fbeec25025d
-# ╠═e1c0635c-c469-4ea6-845f-94bb7a58cac3
-# ╟─695c8e1b-e9f7-4aa9-9543-5ed69227e7ab
-# ╟─8b8af85b-8327-4f3b-9134-4b6d17d69ad4
-# ╠═d44835c4-ab05-4258-a841-a55521f8cec9
-# ╠═0c32f263-55ab-40d2-a626-1825109d2665
+# ╟─908af3d7-63ba-4e79-9311-786bce192079
 # ╟─6afdd882-b89b-4bad-9aa4-cd4867551b92
 # ╟─918409c6-896b-4395-b73e-25a52a550798
 # ╟─02ef5c10-95ec-41b8-ba31-6f9ea8521106
@@ -3859,12 +3890,25 @@ version = "1.4.1+1"
 # ╟─3b267f71-8ed7-44f4-a653-918ecab5f0d3
 # ╟─3e5557d3-4e9f-488b-8725-b396a02fc18a
 # ╟─30d89ed0-f1a5-4537-9085-b133de9c81a4
+# ╟─4093f40d-b6ff-4bfe-ba44-02c23dba816c
 # ╟─f1c177e3-52c8-444e-b24e-9ff149592931
 # ╟─9c250234-9e87-4862-9ad3-7e5d7907f7f4
 # ╟─beb4699b-50e6-4e04-b227-f33c87defe46
 # ╟─a6cc9772-9856-40d5-bd7e-30945b161719
 # ╟─bab7ce3d-4cee-487a-b5d6-cd08f8c1145b
 # ╟─0a573998-6a80-4dad-99cb-6d9d56745b10
+# ╟─9794b531-30a4-46a3-97d2-443e6289ba6d
 # ╟─ad25926a-31e8-48c2-b22e-f96009a4872a
+# ╟─0912c886-2a33-4fce-a805-7829f7a143e8
+# ╟─4a5ba23a-df28-4f34-9f24-ae1a07c6e5c0
+# ╠═8edb1e45-934a-453c-a5e2-4e5a7847767a
+# ╟─819b644e-a7a0-4d49-83d4-01c41653eea2
+# ╠═dbc5dedf-cc89-4eb2-96dc-9fbeec25025d
+# ╠═e1c0635c-c469-4ea6-845f-94bb7a58cac3
+# ╠═0c32f263-55ab-40d2-a626-1825109d2665
+# ╟─91592a94-32c7-4c60-90bb-981643e473d8
+# ╟─695c8e1b-e9f7-4aa9-9543-5ed69227e7ab
+# ╟─8b8af85b-8327-4f3b-9134-4b6d17d69ad4
+# ╠═d44835c4-ab05-4258-a841-a55521f8cec9
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
